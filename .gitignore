@@ -1,0 +1,52 @@
+.DS_Store
+*.log
+*.sock
+*.tmp
+*.db
+*.sqlite
+*.sqlite-*
+
+# Credentials and local environment files
+.env
+.env.*
+!.env.example
+*credentials*
+*secrets*
+home/.cursor/mcp.json
+home/.claude.json*
+
+# Cursor generated and machine-local state
+home/.cursor/ai-tracking/
+home/.cursor/extensions/
+home/.cursor/ide_state.json
+home/.cursor/plans/
+home/.cursor/plugins/
+home/.cursor/projects/
+home/.cursor/skills-cursor/
+
+# Claude generated and machine-local state
+home/.claude/backups/
+home/.claude/cache/
+home/.claude/chrome/
+home/.claude/downloads/
+home/.claude/file-history/
+home/.claude/history.jsonl
+home/.claude/ide/
+home/.claude/paste-cache/
+home/.claude/plans/
+home/.claude/plugins/
+home/.claude/projects/
+home/.claude/session-env/
+home/.claude/sessions/
+home/.claude/shell-snapshots/
+home/.claude/tasks/
+home/.claude/telemetry/
+
+# herdr and WezTerm runtime state
+home/.config/herdr/release-notes.json
+home/.config/herdr/session.json
+home/.config/herdr/*.log
+home/.config/herdr/*.sock
+
+# macOS
+.DS_Store
