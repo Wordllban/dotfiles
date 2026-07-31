@@ -17,7 +17,7 @@ usage() {
   cat <<'EOF'
 Usage: scripts/setup.sh [--link|--copy] [--dry-run]
 
-Install the repository's portable configuration files.
+Install the repository's portable configuration files and Cursor extensions.
 
   --link      Symlink files into the home directory (default).
   --copy      Copy files instead of creating symlinks.
@@ -26,6 +26,9 @@ Install the repository's portable configuration files.
 
 Existing destinations are moved to a timestamped directory under
 ~/.dotfiles-backups before replacement.
+
+Cursor extensions are installed from home/.cursor/extensions.txt when the
+cursor CLI is available.
 EOF
 }
 
@@ -116,9 +119,48 @@ while (($#)); do
   shift
 done
 
+install_cursor_extensions() {
+  local list="$REPO_ROOT/home/.cursor/extensions.txt"
+  local extension
+  local installed
+
+  if [[ ! -f "$list" ]]; then
+    printf 'Skipping Cursor extensions: missing %s\n' "$list" >&2
+    return
+  fi
+
+  if ! command -v cursor >/dev/null 2>&1; then
+    printf 'Skipping Cursor extensions: cursor CLI not found\n' >&2
+    return
+  fi
+
+  installed=$(cursor --list-extensions 2>/dev/null || true)
+
+  while IFS= read -r extension || [[ -n "$extension" ]]; do
+    [[ -z "$extension" || "$extension" == \#* ]] && continue
+
+    if printf '%s\n' "$installed" | grep -Fxq -- "$extension"; then
+      printf 'Cursor extension already installed: %s\n' "$extension"
+      continue
+    fi
+
+    if "$dry_run"; then
+      print_command cursor --install-extension "$extension"
+    else
+      printf 'Installing Cursor extension: %s\n' "$extension"
+      if ! cursor --install-extension "$extension"; then
+        printf 'Failed to install Cursor extension: %s\n' "$extension" >&2
+        had_error=true
+      fi
+    fi
+  done < "$list"
+}
+
 while IFS='|' read -r relative_source destination; do
   install_file "$relative_source" "$destination"
 done < <(dotfiles_manifest)
+
+install_cursor_extensions
 
 if "$had_error"; then
   exit 1

@@ -19,7 +19,8 @@ Usage: scripts/update.sh [--dry-run]
 Copy the current portable configuration files from the home directory back
 into this repository. The explicit allowlist in config-manifest.sh prevents
 logs, caches, histories, databases, sockets, generated state, and plugin data
-from being collected.
+from being collected. Also refreshes home/.cursor/extensions.txt from the
+cursor CLI when available.
 
   --dry-run   Print changes without writing anything.
   -h, --help  Show this help.
@@ -93,9 +94,45 @@ while (($#)); do
   shift
 done
 
+update_cursor_extensions() {
+  local destination="$REPO_ROOT/home/.cursor/extensions.txt"
+  local temporary_list
+
+  if ! command -v cursor >/dev/null 2>&1; then
+    printf 'Skipping Cursor extensions list: cursor CLI not found\n' >&2
+    return
+  fi
+
+  temporary_list=$(mktemp)
+  {
+    printf '%s\n' \
+      '# Cursor extensions managed by scripts/setup.sh (one publisher.name per line).' \
+      '# Refresh with: ./scripts/update.sh'
+    cursor --list-extensions | LC_ALL=C sort -u
+  } >"$temporary_list"
+
+  if [[ -f "$destination" ]] && cmp -s "$temporary_list" "$destination"; then
+    printf 'Unchanged: home/.cursor/extensions.txt\n'
+    rm -f -- "$temporary_list"
+    return
+  fi
+
+  if "$dry_run"; then
+    printf 'Would update: home/.cursor/extensions.txt\n'
+    rm -f -- "$temporary_list"
+    return
+  fi
+
+  mkdir -p "$(dirname -- "$destination")"
+  mv -- "$temporary_list" "$destination"
+  printf 'Updated: home/.cursor/extensions.txt\n'
+}
+
 while IFS='|' read -r relative_destination source; do
   update_file "$relative_destination" "$source"
 done < <(dotfiles_manifest)
+
+update_cursor_extensions
 
 if "$had_error"; then
   exit 1

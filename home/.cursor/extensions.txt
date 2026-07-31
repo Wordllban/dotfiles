@@ -1,0 +1,23 @@
+# Cursor extensions managed by scripts/setup.sh (one publisher.name per line).
+# Refresh with: ./scripts/update.sh
+anthropic.claude-code
+anysphere.cursorpyright
+anysphere.remote-containers
+anysphere.remote-ssh
+astro-build.astro-vscode
+bradlc.vscode-tailwindcss
+docker.docker
+eamodio.gitlens
+esbenp.prettier-vscode
+formulahendry.auto-rename-tag
+ms-azuretools.vscode-containers
+ms-azuretools.vscode-docker
+ms-python.debugpy
+ms-python.python
+ms-python.vscode-python-envs
+pkief.material-icon-theme
+steoates.autoimport
+streetsidesoftware.code-spell-checker
+streetsidesoftware.code-spell-checker-british-english
+streetsidesoftware.code-spell-checker-ukrainian
+yoavbls.pretty-ts-errors
