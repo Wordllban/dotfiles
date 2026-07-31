@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
-
-# This file is sourced by setup.sh and update.sh.
+# Allowlist mapping repository files to home-directory destinations.
+# Source only; do not execute.
 
 case "$(uname -s)" in
   Darwin)

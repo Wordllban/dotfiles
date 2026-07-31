@@ -41,6 +41,12 @@ Claude's status line requires `jq`. Cursor extensions are installed from
 `home/.cursor/extensions.txt` when the `cursor` CLI is on `PATH`. The other
 applications must be installed separately.
 
+Script output is colorized in a terminal. Set `NO_COLOR=1` for plain logs.
+Set `VERBOSE=1` to print low-level shell commands during dry runs.
+
+Shared helpers live under `scripts/lib/` and are sourced by the entry scripts;
+they are not meant to be run directly.
+
 ## Updating the repository
 
 After changing local application settings, preview and collect the allowlisted
@@ -51,7 +57,7 @@ files:
 ./scripts/update.sh
 ```
 
-`scripts/config-manifest.sh` is the single allowlist used in both directions.
+`scripts/lib/manifest.sh` is the single allowlist used in both directions.
 The update script refuses files that match common credential patterns and
 copies through a temporary file before replacing repository content.
 
