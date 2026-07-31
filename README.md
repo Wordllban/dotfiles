@@ -7,8 +7,9 @@ machines.
 ## Included configuration
 
 - Cursor editor settings, keybindings, and extensions list
+- Global agent skills list (`home/.agents/skills.txt`) installed via [skills.sh](https://skills.sh/)
 - Global `AGENTS.md` instructions shared with Claude via `CLAUDE.md` import
-- Claude settings and status line
+- Claude settings and status line (official `code-review` plugin disabled in favor of Matt Pocock's skill)
 - herdr key bindings and UI preferences
 - WezTerm appearance and key bindings
 
@@ -38,9 +39,30 @@ moved under `~/.dotfiles-backups/<timestamp>-<pid>/`. Re-running setup is safe:
 already-current copies and links are skipped.
 
 Claude's status line requires `jq`. Cursor extensions are installed from
-`home/.cursor/extensions.txt` when the `cursor` CLI is on `PATH`. The other
-applications must be installed separately.
+`home/.cursor/extensions.txt` when the `cursor` CLI is on `PATH`. Agent skills
+from `home/.agents/skills.txt` are optional - pass `--skills` to install or
+refresh them via `npx skills` (needs Node.js, `jq`, and `python3`).
 
+Each skills line is `<owner/repo> <skill> <mode>` using Claude Code's
+[`skillOverrides`](https://code.claude.com/docs/en/skills) values:
+
+| Mode | Claude Code | Cursor |
+|------|-------------|--------|
+| `on` | name + description; model may invoke | same via frontmatter |
+| `name-only` | name listed only | treated like `on` (no Cursor equivalent) |
+| `user-invocable-only` | slash-only (`/skill`) | `disable-model-invocation: true` |
+| `off` | hidden | not installed for Cursor |
+
+`--skills` runs `npx skills update`, installs missing skills, writes Claude
+`skillOverrides` into `home/.claude/settings.json`, and re-applies Cursor
+frontmatter so Matt Pocock (and other) skill updates stay compatible.
+
+```sh
+./scripts/setup.sh --skills
+./scripts/setup.sh --dry-run --skills
+```
+
+The other applications must be installed separately.
 Script output is colorized in a terminal. Set `NO_COLOR=1` for plain logs.
 Set `VERBOSE=1` to print low-level shell commands during dry runs.
 
@@ -71,8 +93,8 @@ Only portable, user-controlled configuration is included. In particular:
   excluded.
 - `.cursor/argv.json` is excluded because it contains generated crash-reporting
   state and a machine identifier.
-- Claude's externally managed `find-skills` symlink is excluded because its
-  target lives outside `~/.claude`.
+- Claude's externally managed skill symlinks under `~/.claude/skills/` are
+  excluded; install them via `home/.agents/skills.txt` and `scripts/setup.sh`.
 - herdr logs, Unix sockets, `session.json`, and `release-notes.json` are
   excluded.
 - WezTerm's generated `check_update` state is excluded.

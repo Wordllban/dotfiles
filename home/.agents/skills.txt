@@ -1,0 +1,21 @@
+# Agent skills managed by scripts/setup.sh via npx skills.
+# Format: <owner/repo> <skill-name> <mode>
+#
+# Modes (Claude Code skillOverrides + Cursor-compatible mapping):
+#   on                   - full listing; model may invoke (Claude + Cursor)
+#   name-only            - Claude: name in listing only; Cursor: same as on
+#   user-invocable-only  - slash-only (/skill); not auto-invoked
+#   off                  - Claude: hidden; not installed for Cursor
+#
+# Aliases: auto -> on, manual -> user-invocable-only
+#
+# Browse: https://skills.sh/
+# Matt Pocock: https://www.skills.sh/mattpocock/skills
+mattpocock/skills grilling user-invocable-only
+mattpocock/skills codebase-design user-invocable-only
+mattpocock/skills diagnosing-bugs user-invocable-only
+mattpocock/skills caveman on
+mattpocock/skills code-review user-invocable-only
+mattpocock/skills wayfinder user-invocable-only
+mattpocock/skills loop-me user-invocable-only
+mattpocock/skills handoff user-invocable-only

@@ -2,5 +2,18 @@
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "code-review@claude-plugins-official": false
+  },
+  "skillOverrides": {
+    "grilling": "user-invocable-only",
+    "codebase-design": "user-invocable-only",
+    "diagnosing-bugs": "user-invocable-only",
+    "caveman": "on",
+    "code-review": "user-invocable-only",
+    "wayfinder": "user-invocable-only",
+    "loop-me": "user-invocable-only",
+    "handoff": "user-invocable-only"
   }
 }

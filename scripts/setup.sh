@@ -16,25 +16,32 @@ source "$LIB_DIR/manifest.sh"
 source "$LIB_DIR/files.sh"
 # shellcheck source=lib/extensions.sh
 source "$LIB_DIR/extensions.sh"
+# shellcheck source=lib/skills.sh
+source "$LIB_DIR/skills.sh"
 
 mode=link
+install_skills=false
 
 usage() {
   cat <<'EOF'
-Usage: scripts/setup.sh [--link|--copy] [--dry-run]
+Usage: scripts/setup.sh [--link|--copy] [--dry-run] [--skills]
 
 Install the repository's portable configuration files and Cursor extensions.
+Agent skills install only when --skills is passed.
 
   --link      Symlink files into the home directory (default).
   --copy      Copy files instead of creating symlinks.
   --dry-run   Print changes without writing anything.
+  --skills    Install/update agent skills and apply Claude/Cursor modes
   -h, --help  Show this help.
 
 Existing destinations are moved to a timestamped directory under
 ~/.dotfiles-backups before replacement.
 
 Cursor extensions are installed from home/.cursor/extensions.txt when the
-cursor CLI is available.
+cursor CLI is available. With --skills, agent skills are updated and installed
+via npx skills, Claude skillOverrides are written, and Cursor frontmatter is
+re-applied.
 EOF
 }
 
@@ -49,6 +56,9 @@ parse_args() {
         ;;
       --dry-run)
         dry_run=true
+        ;;
+      --skills)
+        install_skills=true
         ;;
       -h|--help)
         usage
@@ -81,6 +91,14 @@ main() {
   ui_blank
   ui_section "Cursor extensions"
   ext_install_from_list
+
+  ui_blank
+  ui_section "Agent skills"
+  if [[ "$install_skills" == true ]]; then
+    skills_install_from_list
+  else
+    ui_skip "Skipped (pass --skills to install)"
+  fi
 
   ui_summary
 }
