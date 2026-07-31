@@ -6,7 +6,8 @@ machines.
 
 ## Included configuration
 
-- Cursor editor settings and keybindings
+- Cursor editor settings, keybindings, and extensions list
+- Global `AGENTS.md` instructions shared with Claude via `CLAUDE.md` import
 - Claude settings and status line
 - herdr key bindings and UI preferences
 - WezTerm appearance and key bindings
@@ -36,8 +37,9 @@ Existing destination files are never discarded. Before replacement they are
 moved under `~/.dotfiles-backups/<timestamp>-<pid>/`. Re-running setup is safe:
 already-current copies and links are skipped.
 
-Claude's status line requires `jq`. The other applications must be installed
-separately.
+Claude's status line requires `jq`. Cursor extensions are installed from
+`home/.cursor/extensions.txt` when the `cursor` CLI is on `PATH`. The other
+applications must be installed separately.
 
 ## Updating the repository
 
