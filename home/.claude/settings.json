@@ -38,7 +38,9 @@
   "permissions": {
     "allow": [
       "Bash(gh *)",
-      "Bash(acli *)"
+      "Bash(acli *)",
+      "Bash(rtk *)",
+      "Bash(cce *)"
     ],
     "ask": [
       "Bash(rm -rf *)",
