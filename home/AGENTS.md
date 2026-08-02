@@ -6,3 +6,4 @@
 - Never manually modify CHANGELOG.md files or any files that are marked as auto-generated
 - Don't overuse comments. They must stay precise and only for complex functions or edge cases
 - Prefer CLI over MCP when available
+- Do not try to bypass permission prompts for destructive shell, git, gh, or acli commands

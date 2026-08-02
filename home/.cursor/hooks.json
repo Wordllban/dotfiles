@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "command": "./hooks/guard-destructive.sh",
+        "failClosed": true
+      }
+    ]
+  }
+}

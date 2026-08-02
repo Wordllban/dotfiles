@@ -1,0 +1,17 @@
+{
+  // Prefer Auto-review in Cursor Settings > Agents > Approvals & Execution.
+  // autoRun steers the classifier; hooks enforce ask for destructive commands.
+  // Do not set terminalAllowlist here: it replaces the IDE allowlist and can
+  // lock Auto-review out of the run-mode picker.
+  "autoRun": {
+    "allow_instructions": [
+      "Allow routine GitHub CLI (gh) commands such as status, view, list, diff, pr create/view/checkout/checks, issue list/view, and other non-destructive workflow actions.",
+      "Allow routine Atlassian CLI (acli) commands such as viewing and listing work items and other non-destructive workflow actions."
+    ],
+    "block_instructions": [
+      "Require approval for destructive or irreversible shell commands, including rm -rf, git push --force, git push -f, git reset --hard, and git clean -fd.",
+      "Require approval for destructive GitHub CLI (gh) commands such as repo delete/archive/rename, secret set/delete, variable delete, release/gist/issue/cache/run delete, ssh-key/gpg-key delete, auth logout, project/label delete, and workflow disable.",
+      "Require approval for destructive Atlassian CLI (acli) commands that delete, deactivate, or permanently remove users, projects, or work items."
+    ]
+  }
+}
