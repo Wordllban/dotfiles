@@ -7,8 +7,22 @@ set -euo pipefail
 input=$(cat)
 command=$(printf '%s' "$input" | jq -r '.tool_input.command // .command // empty')
 
-if [[ -z "$command" ]]; then
+is_claude=false
+if printf '%s' "$input" | jq -e 'has("tool_input")' >/dev/null 2>&1; then
+  is_claude=true
+fi
+
+allow() {
+  if [[ "$is_claude" == true ]]; then
+    exit 0
+  fi
+  # Cursor failClosed treats empty stdout as failure; emit an explicit allow.
+  jq -n '{ permission: "allow" }'
   exit 0
+}
+
+if [[ -z "$command" ]]; then
+  allow
 fi
 
 is_destructive() {
@@ -45,14 +59,10 @@ is_destructive() {
 }
 
 if ! is_destructive "$command"; then
-  exit 0
+  allow
 fi
 
 reason='Destructive command requires approval'
-is_claude=false
-if printf '%s' "$input" | jq -e 'has("tool_input")' >/dev/null 2>&1; then
-  is_claude=true
-fi
 
 if [[ "$is_claude" == true ]]; then
   jq -n \

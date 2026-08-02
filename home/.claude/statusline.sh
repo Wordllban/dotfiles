@@ -18,13 +18,15 @@ if [ -n "$(git --no-optional-locks status --porcelain 2>/dev/null)" ]; then
   dirty="*"
 fi
 
-# Context square: purple ≤90k, green ≤130k, yellow <70%, red ≥70%
 PURPLE='\033[1;35m'
+PURPLE_SOFT='\033[38;5;141m'
 GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
 RED='\033[0;31m'
+BLUE='\033[38;5;27m'
 RESET='\033[0m'
 
+# Context square: purple ≤90k, green ≤130k, yellow <70%, red ≥70%
 ctx_square=""
 if [ -n "$used_pct" ]; then
   used_tokens=$(awk -v p="$used_pct" -v w="$window_size" 'BEGIN { printf "%d", p * w / 100 }')
@@ -41,8 +43,8 @@ if [ -n "$used_pct" ]; then
 fi
 
 # Line 1: model (effort) | ■ | 5h N%
-printf "%s" "$model"
-[ -n "$effort" ] && printf " (%s)" "$effort"
+printf "%b%s%b" "$PURPLE" "$model" "$RESET"
+[ -n "$effort" ] && printf "%b (%s)%b" "$PURPLE_SOFT" "$effort" "$RESET"
 printf "%b" "$ctx_square"
 if [ -n "$rate_5h" ]; then
   printf " | 5h %.0f%%" "$rate_5h"
@@ -52,7 +54,8 @@ printf "\n"
 # Line 2: branch* | worktree
 if [ -n "$branch" ] || [ -n "$worktree" ]; then
   if [ -n "$branch" ]; then
-    printf "%s%s" "$branch" "$dirty"
+    printf "%b%s%b" "$BLUE" "$branch" "$RESET"
+    [ -n "$dirty" ] && printf "%b*%b" "$RED" "$RESET"
     [ -n "$worktree" ] && printf " | %s" "$worktree"
   else
     printf "%s" "$worktree"
