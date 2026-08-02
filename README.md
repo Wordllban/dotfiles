@@ -4,39 +4,6 @@ This repository collects the custom configurations I use for coding and
 everyday tools so they can be shared, versioned, and reproduced across
 machines.
 
-## Included configuration
-
-- Cursor editor settings, keybindings, extensions list, agent permissions, and hooks
-- Global agent skills list (`home/.agents/skills.txt`) installed via [skills.sh](https://skills.sh/)
-- Shared destructive-command guard hook (`home/.agents/hooks/guard-destructive.sh`)
-- Global `AGENTS.md` instructions shared with Claude via `CLAUDE.md` import
-- Claude settings (default Bash allow for `gh` / `acli`, ask rules for destructive commands, PreToolUse guard) and status line (official `code-review` plugin disabled in favor of Matt Pocock's skill)
-- herdr key bindings and UI preferences
-- WezTerm appearance and key bindings
-
-Files under `home/` are organized by application. The manifest maps them to
-the appropriate home-directory destinations on macOS and Linux.
-
-### Agent command permissions
-
-Claude Code and Cursor use different permission models, so this repo configures
-both deliberately:
-
-| Tool | Default allow | Destructive guard |
-|------|---------------|-------------------|
-| Claude Code | `permissions.allow` for `Bash(gh *)` and `Bash(acli *)` | `permissions.ask` for destructive patterns (ask beats allow), plus a PreToolUse hook |
-| Cursor | `autoRun.allow_instructions` for routine `gh` / `acli` (Auto-review mode) | `autoRun.block_instructions` plus a fail-closed `beforeShellExecution` hook |
-
-Cursor's recommended run mode is Auto-review. This repo intentionally does
-**not** set `terminalAllowlist` in `permissions.json`, because that key
-replaces the in-app terminal allowlist and can prevent selecting Auto-review.
-
-The shared hook script asks before destructive `rm`/`git`/`gh`/`acli`
-patterns. It is installed to both `~/.agents/hooks/` and `~/.cursor/hooks/`.
-
-The application requested as "herdr" is installed on this machine with that
-exact lowercase name and stores its configuration in `~/.config/herdr`.
-
 ## Setup
 
 Run from the repository root:
@@ -86,6 +53,39 @@ Set `VERBOSE=1` to print low-level shell commands during dry runs.
 
 Shared helpers live under `scripts/lib/` and are sourced by the entry scripts;
 they are not meant to be run directly.
+
+## Included configuration
+
+- Cursor editor settings, keybindings, extensions list, agent permissions, and hooks
+- Global agent skills list (`home/.agents/skills.txt`) installed via [skills.sh](https://skills.sh/)
+- Shared destructive-command guard hook (`home/.agents/hooks/guard-destructive.sh`)
+- Global `AGENTS.md` instructions shared with Claude via `CLAUDE.md` import
+- Claude settings (default Bash allow for `gh` / `acli`, ask rules for destructive commands, PreToolUse guard) and status line (official `code-review` plugin disabled in favor of Matt Pocock's skill)
+- herdr key bindings and UI preferences
+- WezTerm appearance and key bindings
+
+Files under `home/` are organized by application. The manifest maps them to
+the appropriate home-directory destinations on macOS and Linux.
+
+### Agent command permissions
+
+Claude Code and Cursor use different permission models, so this repo configures
+both deliberately:
+
+| Tool | Default allow | Destructive guard |
+|------|---------------|-------------------|
+| Claude Code | `permissions.allow` for `Bash(gh *)` and `Bash(acli *)` | `permissions.ask` for destructive patterns (ask beats allow), plus a PreToolUse hook |
+| Cursor | `autoRun.allow_instructions` for routine `gh` / `acli` (Auto-review mode) | `autoRun.block_instructions` plus a fail-closed `beforeShellExecution` hook |
+
+Cursor's recommended run mode is Auto-review. This repo intentionally does
+**not** set `terminalAllowlist` in `permissions.json`, because that key
+replaces the in-app terminal allowlist and can prevent selecting Auto-review.
+
+The shared hook script asks before destructive `rm`/`git`/`gh`/`acli`
+patterns. It is installed to both `~/.agents/hooks/` and `~/.cursor/hooks/`.
+
+The application requested as "herdr" is installed on this machine with that
+exact lowercase name and stores its configuration in `~/.config/herdr`.
 
 ## Updating the repository
 
