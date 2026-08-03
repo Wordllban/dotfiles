@@ -10,12 +10,15 @@
 # Aliases: auto -> on, manual -> user-invocable-only
 #
 # Browse: https://skills.sh/
+
 # Matt Pocock: https://www.skills.sh/mattpocock/skills
 mattpocock/skills grilling user-invocable-only
 mattpocock/skills codebase-design user-invocable-only
 mattpocock/skills diagnosing-bugs user-invocable-only
-mattpocock/skills caveman on
 mattpocock/skills code-review user-invocable-only
 mattpocock/skills wayfinder user-invocable-only
 mattpocock/skills loop-me user-invocable-only
 mattpocock/skills handoff user-invocable-only
+
+# Julius Brussee: https://www.skills.sh/juliusbrussee
+juliusbrussee/caveman caveman on
