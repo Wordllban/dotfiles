@@ -18,6 +18,7 @@ mattpocock/skills diagnosing-bugs user-invocable-only
 mattpocock/skills domain-modeling user-invocable-only
 mattpocock/skills code-review user-invocable-only
 mattpocock/skills wayfinder user-invocable-only
+mattpocock/skills setup-matt-pocock-skills user-invocable-only
 mattpocock/skills loop-me user-invocable-only
 mattpocock/skills handoff user-invocable-only
 
