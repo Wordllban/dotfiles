@@ -26,7 +26,8 @@ ext_install_from_list() {
   installed=$(cursor --list-extensions 2>/dev/null || true)
   ui_spin_stop
 
-  while IFS= read -r extension || [[ -n "$extension" ]]; do
+  # Read the list on FD 3 so cursor cannot drain it via stdin
+  while IFS= read -r extension <&3 || [[ -n "$extension" ]]; do
     [[ -z "$extension" || "$extension" == \#* ]] && continue
 
     if printf '%s\n' "$installed" | grep -Fxq -- "$extension"; then
@@ -39,14 +40,14 @@ ext_install_from_list() {
       continue
     fi
 
-    ui_spin_start "Installing $extension…"
-    if cursor --install-extension "$extension" >/dev/null 2>&1; then
+    ui_spin_start "Installing ${extension}…"
+    if cursor --install-extension "$extension" </dev/null >/dev/null 2>&1; then
       ui_spin_ok "Installed  $extension"
     else
       ui_spin_fail "Failed to install  $extension"
       common_mark_error
     fi
-  done < "$list"
+  done 3< "$list"
 }
 
 ext_refresh_list() {

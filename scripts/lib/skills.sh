@@ -11,7 +11,8 @@ skills_settings_path() {
 }
 
 skills_inventory_json() {
-  npx --yes skills list -g --json 2>/dev/null || true
+  # Keep stdin closed so callers inside `while read` loops are not drained
+  npx --yes skills list -g --json </dev/null 2>/dev/null || true
 }
 
 skills_installed_names() {
@@ -178,7 +179,8 @@ skills_install_from_list() {
   installed=$(skills_installed_names "$inventory")
   ui_spin_stop
 
-  while IFS= read -r line || [[ -n "$line" ]]; do
+  # Read the manifest on FD 3 so npx/other tools cannot drain it via stdin
+  while IFS= read -r line <&3 || [[ -n "$line" ]]; do
     [[ -z "$line" || "$line" == \#* ]] && continue
 
     # shellcheck disable=SC2086
@@ -210,8 +212,8 @@ skills_install_from_list() {
     elif [[ "$dry_run" == true ]]; then
       ui_ok "Would install  $skill  ($package)"
     else
-      ui_spin_start "Installing $skill…"
-      if npx --yes skills add "$package" --skill "$skill" -g -y "${agents[@]}" >/dev/null 2>&1; then
+      ui_spin_start "Installing ${skill}…"
+      if npx --yes skills add "$package" --skill "$skill" -g -y "${agents[@]}" </dev/null >/dev/null 2>&1; then
         ui_spin_ok "Installed  $skill"
         inventory=$(skills_inventory_json)
         installed=$(skills_installed_names "$inventory")
@@ -246,7 +248,7 @@ skills_install_from_list() {
     fi
 
     ui_ok "Claude mode  $skill → $mode"
-  done < "$list"
+  done 3< "$list"
 
   if skills_write_claude_overrides "$overrides_json"; then
     if [[ "$dry_run" == true ]]; then
