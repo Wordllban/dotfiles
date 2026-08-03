@@ -15,6 +15,7 @@
 mattpocock/skills grilling user-invocable-only
 mattpocock/skills codebase-design user-invocable-only
 mattpocock/skills diagnosing-bugs user-invocable-only
+mattpocock/skills domain-modeling user-invocable-only
 mattpocock/skills code-review user-invocable-only
 mattpocock/skills wayfinder user-invocable-only
 mattpocock/skills loop-me user-invocable-only
