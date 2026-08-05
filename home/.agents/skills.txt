@@ -21,6 +21,8 @@ mattpocock/skills wayfinder user-invocable-only
 mattpocock/skills setup-matt-pocock-skills user-invocable-only
 mattpocock/skills loop-me user-invocable-only
 mattpocock/skills handoff user-invocable-only
+mattpocock/skills wait-what user-invocable-only
+mattpocock/skills writing-for-agents user-invocable-only
 
 # Julius Brussee: https://www.skills.sh/juliusbrussee
 juliusbrussee/caveman caveman on
