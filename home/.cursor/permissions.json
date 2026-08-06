@@ -2,18 +2,18 @@
   // Prefer Auto-review in Cursor Settings > Agents > Approvals & Execution.
   // autoRun steers the classifier; hooks enforce ask for destructive commands.
   // Do not set terminalAllowlist here: it replaces the IDE allowlist and can
-  // lock Auto-review out of the run-mode picker.
+  // lock Auto-review out of the run-mode picker. Prefer expanding the IDE
+  // terminal allowlist for everyday prefixes (git, npm, pnpm, yarn, etc.).
   "autoRun": {
     "allow_instructions": [
-      "Allow routine GitHub CLI (gh) commands such as status, view, list, diff, pr create/view/checkout/checks, issue list/view, and other non-destructive workflow actions.",
-      "Allow routine Atlassian CLI (acli) commands such as viewing and listing work items and other non-destructive workflow actions.",
-      "Allow rtk CLI commands used to proxy and compress common dev command output for lower token usage.",
-      "Allow cce (code-context-engine) CLI commands used to index and search the codebase for context."
+      "Allow common local development commands: git status/diff/log/add/commit/branch/checkout/pull/fetch/push (non-force), package managers (npm/pnpm/yarn/bun), build/test/lint/typecheck, and read-only inspection tools (rg, find, jq, ls, cat, head, file).",
+      "Allow routine GitHub CLI (gh) and Atlassian CLI (acli) non-destructive workflow commands.",
+      "Allow rtk and cce CLI commands used for context and output compression.",
+      "Prefer allowing sandboxed commands and commands that only touch the current workspace."
     ],
     "block_instructions": [
-      "Require approval for destructive or irreversible shell commands, including rm -rf, git push --force, git push -f, git reset --hard, and git clean -fd.",
-      "Require approval for destructive GitHub CLI (gh) commands such as repo delete/archive/rename, secret set/delete, variable delete, release/gist/issue/cache/run delete, ssh-key/gpg-key delete, auth logout, project/label delete, and workflow disable.",
-      "Require approval for destructive Atlassian CLI (acli) commands that delete, deactivate, or permanently remove users, projects, or work items."
+      "Require approval for destructive or irreversible commands: rm -rf, git push --force/-f, git reset --hard, git clean -fd, and deleting or archiving remotes/secrets/releases/workflows.",
+      "Require approval for commands that modify files outside the workspace, change shell/SSH config, or manage credentials."
     ]
   }
 }

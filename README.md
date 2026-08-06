@@ -75,11 +75,13 @@ both deliberately:
 | Tool | Default allow | Destructive guard |
 |------|---------------|-------------------|
 | Claude Code | `permissions.allow` for `Bash(gh *)` and `Bash(acli *)` | `permissions.ask` for destructive patterns (ask beats allow), plus a PreToolUse hook |
-| Cursor | `autoRun.allow_instructions` for routine `gh` / `acli` (Auto-review mode) | `autoRun.block_instructions` plus a fail-closed `beforeShellExecution` hook |
+| Cursor | Broad `autoRun.allow_instructions` for everyday local/dev commands plus routine `gh` / `acli` (Auto-review mode) | Narrow `autoRun.block_instructions` plus a fail-closed `beforeShellExecution` hook |
 
 Cursor's recommended run mode is Auto-review. This repo intentionally does
 **not** set `terminalAllowlist` in `permissions.json`, because that key
 replaces the in-app terminal allowlist and can prevent selecting Auto-review.
+Expand everyday command prefixes in the IDE terminal allowlist instead
+(`git`, `npm`, `pnpm`, `yarn`, and similar).
 
 The shared hook script asks before destructive `rm`/`git`/`gh`/`acli`
 patterns. It is installed to both `~/.agents/hooks/` and `~/.cursor/hooks/`.
@@ -106,9 +108,9 @@ copies through a temporary file before replacing repository content.
 Only portable, user-controlled configuration is included. In particular:
 
 - `.cursor/mcp.json` is excluded because the local file contains a credential.
-- `.cursor/permissions.json` steers Auto-review via `autoRun` (allow routine
-  `gh` / `acli`, block destructive patterns). It does not set
-  `terminalAllowlist`.
+- `.cursor/permissions.json` steers Auto-review via `autoRun` (allow everyday
+  local/dev commands and routine `gh` / `acli`, block destructive patterns).
+  It does not set `terminalAllowlist`.
 - `.cursor/hooks.json` and the shared guard script enforce approval for
   destructive shell commands.
 - Cursor and Claude histories, sessions, plans, project state, telemetry,
