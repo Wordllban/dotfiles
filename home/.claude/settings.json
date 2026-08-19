@@ -1,38 +1,7 @@
 {
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh"
-  },
   "env": {
-    "DISABLE_TELEMETRY": "1",
     "DISABLE_ERROR_REPORTING": "1",
     "CLAUDE_CODE_SUBPROCESS_ENV_SCRUB": "1"
-  },
-  "enabledPlugins": {
-    "code-review@claude-plugins-official": false
-  },
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.agents/hooks/guard-destructive.sh"
-          }
-        ]
-      }
-    ]
-  },
-  "skillOverrides": {
-    "grilling": "user-invocable-only",
-    "codebase-design": "user-invocable-only",
-    "diagnosing-bugs": "user-invocable-only",
-    "caveman": "on",
-    "code-review": "user-invocable-only",
-    "wayfinder": "user-invocable-only",
-    "loop-me": "user-invocable-only",
-    "handoff": "user-invocable-only"
   },
   "permissions": {
     "allow": [
@@ -71,5 +40,39 @@
       "Bash(acli * deactivate *)",
       "Bash(acli * remove *)"
     ]
+  },
+  "skillOverrides": {
+    "grilling": "user-invocable-only",
+    "codebase-design": "user-invocable-only",
+    "diagnosing-bugs": "user-invocable-only",
+    "caveman": "on",
+    "code-review": "user-invocable-only",
+    "wayfinder": "user-invocable-only",
+    "loop-me": "user-invocable-only",
+    "handoff": "user-invocable-only",
+    "domain-modeling": "user-invocable-only",
+    "setup-matt-pocock-skills": "user-invocable-only",
+    "wait-what": "user-invocable-only",
+    "writing-for-agents": "user-invocable-only"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.agents/hooks/guard-destructive.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "code-review@claude-plugins-official": false
   }
 }
