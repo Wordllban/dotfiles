@@ -5,7 +5,7 @@ argument-hint: "(optional) area to focus on, e.g. 'the migration' or 'just block
 disable-model-invocation: true
 ---
 
-The user runs several Claude Code terminals at once and has been away from this
+The user runs several coding agent sessions at once and has been away from this
 one. Rebuild their context in a single, scannable message.
 
 Write for someone who wrote the original request but no longer remembers the
