@@ -53,7 +53,8 @@
     "domain-modeling": "user-invocable-only",
     "setup-matt-pocock-skills": "user-invocable-only",
     "wait-what": "user-invocable-only",
-    "writing-for-agents": "user-invocable-only"
+    "writing-for-agents": "user-invocable-only",
+    "recaper": "user-invocable-only"
   },
   "hooks": {
     "PreToolUse": [
