@@ -41,6 +41,7 @@
       "Bash(acli * remove *)"
     ]
   },
+  "model": "opus",
   "skillOverrides": {
     "grilling": "user-invocable-only",
     "codebase-design": "user-invocable-only",
@@ -53,7 +54,8 @@
     "domain-modeling": "user-invocable-only",
     "setup-matt-pocock-skills": "user-invocable-only",
     "wait-what": "user-invocable-only",
-    "writing-for-agents": "user-invocable-only"
+    "writing-for-agents": "user-invocable-only",
+    "recaper": "user-invocable-only"
   },
   "hooks": {
     "PreToolUse": [
@@ -74,5 +76,6 @@
   },
   "enabledPlugins": {
     "code-review@claude-plugins-official": false
-  }
+  },
+  "agentPushNotifEnabled": true
 }

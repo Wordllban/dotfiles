@@ -58,6 +58,7 @@ they are not meant to be run directly.
 
 - Cursor editor settings, keybindings, extensions list, agent permissions, and hooks
 - Global agent skills list (`home/.agents/skills.txt`) installed via [skills.sh](https://skills.sh/)
+- Repository-authored skills under `home/.agents/skills/` linked into Claude and Cursor (`/recaper` rebuilds session context after switching terminals)
 - Shared destructive-command guard hook (`home/.agents/hooks/guard-destructive.sh`)
 - Global `AGENTS.md` instructions shared with Claude via `CLAUDE.md` import
 - Claude settings (default Bash allow for `gh` / `acli`, ask rules for destructive commands, PreToolUse guard) and status line (official `code-review` plugin disabled in favor of Matt Pocock's skill)
@@ -120,6 +121,9 @@ Only portable, user-controlled configuration is included. In particular:
   state and a machine identifier.
 - Claude's externally managed skill symlinks under `~/.claude/skills/` are
   excluded; install them via `home/.agents/skills.txt` and `scripts/setup.sh`.
+  Skills authored in this repository live under `home/.agents/skills/` and are
+  linked into `~/.claude/skills/` and `~/.cursor/skills/` by the manifest
+  instead.
 - herdr logs, Unix sockets, `session.json`, and `release-notes.json` are
   excluded.
 - WezTerm's generated `check_update` state is excluded.
