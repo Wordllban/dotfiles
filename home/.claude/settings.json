@@ -51,6 +51,10 @@
     "wayfinder": "user-invocable-only",
     "loop-me": "user-invocable-only",
     "handoff": "user-invocable-only",
+    "domain-modeling": "user-invocable-only",
+    "setup-matt-pocock-skills": "user-invocable-only",
+    "wait-what": "user-invocable-only",
+    "writing-for-agents": "user-invocable-only",
     "recaper": "user-invocable-only"
   },
   "hooks": {
