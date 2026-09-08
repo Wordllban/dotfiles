@@ -24,5 +24,5 @@ mattpocock/skills handoff user-invocable-only
 mattpocock/skills wait-what user-invocable-only
 mattpocock/skills writing-for-agents user-invocable-only
 
-# Julius Brussee: https://www.skills.sh/juliusbrussee
-juliusbrussee/caveman caveman on
+# Dietrich Gebert: https://www.skills.sh/dietrichgebert/ponytail/ponytail
+dietrichgebert/ponytail ponytail on

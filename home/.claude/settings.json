@@ -46,7 +46,6 @@
     "grilling": "user-invocable-only",
     "codebase-design": "user-invocable-only",
     "diagnosing-bugs": "user-invocable-only",
-    "caveman": "on",
     "code-review": "user-invocable-only",
     "wayfinder": "user-invocable-only",
     "loop-me": "user-invocable-only",
@@ -55,7 +54,8 @@
     "setup-matt-pocock-skills": "user-invocable-only",
     "wait-what": "user-invocable-only",
     "writing-for-agents": "user-invocable-only",
-    "recaper": "user-invocable-only"
+    "recaper": "user-invocable-only",
+    "ponytail": "on"
   },
   "hooks": {
     "PreToolUse": [
