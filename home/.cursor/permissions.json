@@ -8,7 +8,7 @@
     "allow_instructions": [
       "Allow common local development commands: git status/diff/log/add/commit/branch/checkout/pull/fetch/push (non-force), package managers (npm/pnpm/yarn/bun), build/test/lint/typecheck, and read-only inspection tools (rg, find, jq, ls, cat, head, file).",
       "Allow routine GitHub CLI (gh) and Atlassian CLI (acli) non-destructive workflow commands.",
-      "Allow rtk and cce CLI commands used for context and output compression.",
+      "Allow rtk CLI commands used for output compression.",
       "Prefer allowing sandboxed commands and commands that only touch the current workspace."
     ],
     "block_instructions": [
