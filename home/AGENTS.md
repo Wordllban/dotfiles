@@ -6,4 +6,4 @@
 - Never manually modify CHANGELOG.md files or any files that are marked as auto-generated
 - Prefer CLI over MCP when available
 - Do not try to bypass permission prompts for destructive shell, git, gh, or acli commands
-- Don't overuse comments. They must stay short and precise; write them only for complex functions or edge cases. If you think adding a large comment is good idea, it means your code is not self-explanatory and should probably be reconsidered
+- Write comments only for complex functions or edge cases, and keep them short and precise. If a large comment seems necessary, the code is not self-explanatory: reconsider the code instead

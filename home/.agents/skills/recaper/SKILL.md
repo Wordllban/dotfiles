@@ -51,7 +51,7 @@ credentials. Close with the single next action to take.
 
 ## Style
 
-- Bullets, not paragraphs. Aim for 15 lines or fewer, hard cap 25.
+- Bullets, not paragraphs. Keep it to what fits on one screen: the reader scans this between other tasks.
 - Concrete over narrative: no retelling of the tool calls you made.
 - If arguments were passed, treat them as the focus and keep the rest to one
   line per section.

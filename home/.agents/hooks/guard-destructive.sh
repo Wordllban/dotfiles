@@ -32,7 +32,7 @@ is_destructive() {
   # Keep this list the single source of truth for hard ask guards.
   local patterns=(
     'rm[[:space:]]+(-[[:alnum:]]*r[[:alnum:]]*f|-[[:alnum:]]*f[[:alnum:]]*r)'
-    'git[[:space:]]+push[[:space:]].*(--force-with-lease|--force|-f)([[:space:]]|$)'
+    'git[[:space:]]+push([[:space:]]+[^;&|]*)?[[:space:]](--force-with-lease|--force|-f)([[:space:]]|$)'
     'git[[:space:]]+reset[[:space:]]+--hard'
     'git[[:space:]]+clean[[:space:]]+-[[:alnum:]]*f'
     'gh[[:space:]]+repo[[:space:]]+(delete|archive|rename)([[:space:]]|$)'
