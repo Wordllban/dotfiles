@@ -26,6 +26,10 @@ dotfiles_manifest() {
     'home/.claude/statusline.sh' "$HOME/.claude/statusline.sh" \
     'home/.agents/skills/recaper/SKILL.md' "$HOME/.claude/skills/recaper/SKILL.md" \
     'home/.agents/skills/recaper/SKILL.md' "$HOME/.cursor/skills/recaper/SKILL.md" \
+    'home/.agents/skills/signoff/SKILL.md' "$HOME/.claude/skills/signoff/SKILL.md" \
+    'home/.agents/skills/signoff/SKILL.md' "$HOME/.cursor/skills/signoff/SKILL.md" \
+    'home/.agents/skills/rules/SKILL.md' "$HOME/.claude/skills/rules/SKILL.md" \
+    'home/.agents/skills/rules/SKILL.md' "$HOME/.cursor/skills/rules/SKILL.md" \
     'home/.cursor/hooks.json' "$HOME/.cursor/hooks.json" \
     'home/.cursor/permissions.json' "$HOME/.cursor/permissions.json" \
     'home/.cursor/settings.json' "$DOTFILES_CURSOR_USER_DIR/settings.json" \

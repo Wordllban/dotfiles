@@ -54,6 +54,8 @@
     "wait-what": "user-invocable-only",
     "writing-for-agents": "user-invocable-only",
     "recaper": "user-invocable-only",
+    "signoff": "user-invocable-only",
+    "rules": "user-invocable-only",
     "ponytail": "on"
   },
   "hooks": {

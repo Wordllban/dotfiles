@@ -58,7 +58,7 @@ they are not meant to be run directly.
 
 - Cursor editor settings, keybindings, extensions list, agent permissions, and hooks
 - Global agent skills list (`home/.agents/skills.txt`) installed via [skills.sh](https://skills.sh/)
-- Repository-authored skills under `home/.agents/skills/` linked into Claude and Cursor (`/recaper` rebuilds session context after switching terminals)
+- Repository-authored skills under `home/.agents/skills/` linked into Claude and Cursor (`/recaper` rebuilds session context after switching terminals, `/signoff` lists what is waiting on my decision, `/rules` re-reads the instruction files and corrects drift)
 - Shared destructive-command guard hook (`home/.agents/hooks/guard-destructive.sh`)
 - Global `AGENTS.md` instructions shared with Claude via `CLAUDE.md` import
 - Claude settings (default Bash allow for `gh` / `acli`, ask rules for destructive commands, PreToolUse guard) and status line (official `code-review` plugin disabled in favor of Matt Pocock's skill)
